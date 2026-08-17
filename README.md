@@ -50,7 +50,8 @@
 ### 🐍 GitHub Contribution Graph Snake Game
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/output/github-contribution-grid-snake-dark.svg" alt="Contribution Snake Animation" width="100%" />
+  <!-- Note: Run the GitHub Action 'Generate Snake Animation' under Actions tab once to render this image -->
+  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/output/github-contribution-grid-snake-dark.svg" alt="Contribution Snake Animation (Run Actions Workflow to enable)" width="100%" />
 </div>
 
 <br/>
@@ -61,27 +62,27 @@
 
 <div align="center">
   <!-- General GitHub Stats -->
-  <img src="https://github-readme-stats.vercel.app/api?username=Dushmanta42310&show_icons=true&theme=dracula&count_private=true&include_all_commits=true&hide_border=true&title_color=38bdf8&icon_color=38bdf8&text_color=cbd5e1&bg_color=0f172a" height="175" alt="GitHub Stats" />
+  <img src="https://github-readme-stats-git-masterstefan-anurag-hazra.vercel.app/api?username=Dushmanta42310&show_icons=true&theme=dracula&count_private=true&include_all_commits=true&hide_border=true&title_color=38bdf8&icon_color=38bdf8&text_color=cbd5e1&bg_color=0f172a" height="175" alt="GitHub Stats" />
   &nbsp;
   <!-- GitHub Streak Stats -->
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Dushmanta42310&theme=dracula&hide_border=true&background=0F172A&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8" height="175" alt="GitHub Streak Stats" />
+  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dracula&hide_border=true&background=0F172A&ring=38BDF8&fire=38BDF8&currStreakLabel=38BDF8" height="175" alt="GitHub Streak Stats" />
 </div>
 
 <br/>
 
 <div align="center">
   <!-- Top Languages Stats -->
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Dushmanta42310&layout=compact&theme=dracula&hide_border=true&title_color=38bdf8&text_color=cbd5e1&bg_color=0f172a" height="165" alt="Top Languages" />
+  <img src="https://github-readme-stats-git-masterstefan-anurag-hazra.vercel.app/api/top-langs/?username=Dushmanta42310&layout=compact&theme=dracula&hide_border=true&title_color=38bdf8&text_color=cbd5e1&bg_color=0f172a" height="165" alt="Top Languages" />
 </div>
 
 <br/>
 
 ---
 
-### 📈 Live Total Commits & Contribution Activity Graph
+### 🏆 GitHub Trophies & Achievements
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Dushmanta42310&theme=react-dark&custom_title=Live%20Total%20Commits%20%26%20Contribution%20Timeline&bg_color=0f172a&color=38bdf8&line=38bdf8&point=ffffff&hide_border=true" width="100%" alt="Contribution Activity Graph" />
+  <img src="https://github-profile-trophy.vercel.app/?username=Dushmanta42310&theme=dracula&no-frame=true&no-bg=true&column=6" width="100%" alt="GitHub Trophies" />
 </div>
 
 <br/>
