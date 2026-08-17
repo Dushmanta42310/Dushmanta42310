@@ -52,6 +52,25 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 
 ---
 
+### Stats
+
+<div align="center">
+  <!-- GitHub Overall Stats Card -->
+  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/github-stats.svg" height="175" alt="GitHub Stats" />
+  &nbsp;
+  <!-- Live GitHub Streak Card -->
+  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="175" alt="GitHub Streak Stats" />
+</div>
+
+<br/>
+
+<div align="center">
+  <!-- Top Languages Breakdown Card -->
+  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/top-languages.svg" height="170" alt="Top Languages" />
+</div>
+
+---
+
 ### Skills
 
 #### Data Analytics & BI
@@ -79,15 +98,6 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
-
----
-
-### Stats
-
-<div align="center">
-  <!-- GitHub Streak Stats -->
-  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="170" alt="GitHub Streak Stats" />
-</div>
 
 ---
 

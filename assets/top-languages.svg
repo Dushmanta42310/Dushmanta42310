@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350" height="195" viewBox="0 0 350 195" fill="none">
+  <style>
+    .bg { fill: #0d1117; rx: 8px; stroke: #30363d; stroke-width: 1px; }
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #00ff66; }
+    .lang-name { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; fill: #c9d1d9; font-weight: 500; }
+    .lang-pct { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 12px; fill: #8b949e; }
+  </style>
+
+  <rect width="350" height="195" class="bg"/>
+
+  <text x="25" y="35" class="title">Most Used Languages</text>
+
+  <!-- Language 1: Python -->
+  <circle cx="30" cy="68" r="6" fill="#3572A5"/>
+  <text x="45" y="72" class="lang-name">Python</text>
+  <text x="280" y="72" class="lang-pct">45.8%</text>
+  <rect x="45" y="78" width="260" height="6" fill="#21262d" rx="3"/>
+  <rect x="45" y="78" width="119" height="6" fill="#3572A5" rx="3"/>
+
+  <!-- Language 2: SQL / PLSQL -->
+  <circle cx="30" cy="103" r="6" fill="#e38c00"/>
+  <text x="45" y="107" class="lang-name">SQL / PLSQL</text>
+  <text x="280" y="107" class="lang-pct">28.4%</text>
+  <rect x="45" y="113" width="260" height="6" fill="#21262d" rx="3"/>
+  <rect x="45" y="113" width="74" height="6" fill="#e38c00" rx="3"/>
+
+  <!-- Language 3: JavaScript -->
+  <circle cx="30" cy="138" r="6" fill="#f1e05a"/>
+  <text x="45" y="142" class="lang-name">JavaScript</text>
+  <text x="280" y="142" class="lang-pct">16.2%</text>
+  <rect x="45" y="148" width="260" height="6" fill="#21262d" rx="3"/>
+  <rect x="45" y="148" width="42" height="6" fill="#f1e05a" rx="3"/>
+
+  <!-- Language 4: HTML / CSS -->
+  <circle cx="30" cy="170" r="6" fill="#e34c26"/>
+  <text x="45" y="174" class="lang-name">HTML / CSS</text>
+  <text x="280" y="174" class="lang-pct">9.6%</text>
+</svg>
