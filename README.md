@@ -14,27 +14,9 @@
 
 ### About
 
-<pre style="background-color: #0d1117; color: #00ff66; border: 1px solid #00ff66; padding: 15px; border-radius: 6px; font-family: 'Courier New', Courier, monospace;">
-<b style="color: #00ff66;">dushmanta@linux-terminal:~$</b> whoami
-> Dushmanta Das | Data Analytics | AI/ML | Cloud Engineer | DBA
-
-<b style="color: #00ff66;">dushmanta@linux-terminal:~$</b> cat skills.json
-{
-  "name": "Dushmanta Das",
-  "username": "Dushmanta42310",
-  "roles": ["Data Analytics", "AI/ML Engineer", "Cloud Engineer", "DBA"],
-  "data_analytics": ["Python", "Pandas", "NumPy", "PowerBI", "Tableau", "SQL"],
-  "ai_ml": ["PyTorch", "TensorFlow", "Scikit-Learn", "OpenCV", "LLMs"],
-  "cloud_engineering": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform"],
-  "dba": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle DB", "SQL Server"]
-}
-
-<b style="color: #00ff66;">dushmanta@linux-terminal:~$</b> systemctl status career.service
-● career.service - Active Learning & Innovation
-     Loaded: loaded (/etc/systemd/system/career.service; enabled)
-     Active: <b style="color: #00ff66;">active (running)</b> since 2024
-     Status: "Building data pipelines, training ML models & tuning databases"
-</pre>
+<div align="center">
+  <img src="assets/terminal-bio.svg" width="100%" alt="Linux Terminal Overview" />
+</div>
 
 ---
 
@@ -68,18 +50,27 @@
 
 ---
 
-### Contribution
+### Stats
 
 <div align="center">
-  <!-- Snake Game Contribution Graph -->
-  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/github-contribution-grid-snake-dark.svg" alt="GitHub Contribution Snake Game" width="100%" />
+  <!-- GitHub Streak Stats -->
+  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="170" alt="GitHub Streak Stats" />
 </div>
 
 <br/>
 
 <div align="center">
-  <!-- Live GitHub Contribution Streak -->
-  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="170" alt="GitHub Streak Stats" />
+  <!-- Interactive Trophies -->
+  <img src="https://github-profile-trophy.vercel.app/?username=Dushmanta42310&theme=dracula&no-frame=true&no-bg=true&column=6" width="100%" alt="GitHub Trophies" />
+</div>
+
+---
+
+### Contribution
+
+<div align="center">
+  <!-- Snake Game Contribution Graph -->
+  <img src="assets/github-contribution-grid-snake-dark.svg" width="100%" alt="GitHub Contribution Snake Game" />
 </div>
 
 ---
