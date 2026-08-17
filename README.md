@@ -14,9 +14,24 @@
 
 ### About
 
-<div align="center">
-  <img src="assets/terminal-bio.svg" width="100%" alt="Linux Terminal Overview" />
-</div>
+```bash
+dushmanta@linux-terminal:~$ whoami
+> Dushmanta Das | Data Analytics | AI/ML | Cloud Engineer | DBA
+
+dushmanta@linux-terminal:~$ cat core_competencies.json
+{
+  "name": "Dushmanta Das",
+  "username": "Dushmanta42310",
+  "roles": ["Data Analytics", "AI/ML Engineer", "Cloud Engineer", "DBA"],
+  "data_analytics": ["Python", "Pandas", "NumPy", "PowerBI", "Tableau", "SQL"],
+  "ai_ml": ["PyTorch", "TensorFlow", "Scikit-Learn", "OpenCV", "LLMs"],
+  "cloud_engineering": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform"],
+  "dba": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle DB", "SQL Server"]
+}
+
+dushmanta@linux-terminal:~$ systemctl status career.service
+● career.service - Active (running) | Building scalable AI & data systems
+```
 
 ---
 
@@ -57,20 +72,13 @@
   <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="170" alt="GitHub Streak Stats" />
 </div>
 
-<br/>
-
-<div align="center">
-  <!-- Interactive Trophies -->
-  <img src="https://github-profile-trophy.vercel.app/?username=Dushmanta42310&theme=dracula&no-frame=true&no-bg=true&column=6" width="100%" alt="GitHub Trophies" />
-</div>
-
 ---
 
 ### Contribution
 
 <div align="center">
-  <!-- Snake Game Contribution Graph -->
-  <img src="assets/github-contribution-grid-snake-dark.svg" width="100%" alt="GitHub Contribution Snake Game" />
+  <!-- Contribution Snake Animation -->
+  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/output/github-contribution-grid-snake-dark.svg" width="100%" alt="GitHub Contribution Snake Game" />
 </div>
 
 ---
