@@ -26,7 +26,7 @@ dushmanta@linux-terminal:~$ cat core_competencies.json
   "data_analytics": ["Python", "Pandas", "NumPy", "PowerBI", "Tableau", "SQL"],
   "ai_ml": ["PyTorch", "TensorFlow", "Scikit-Learn", "OpenCV", "LLMs"],
   "cloud_engineering": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform"],
-  "dba": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle DB", "SQL Server"]
+  "dba": ["Oracle DB (Expert)", "PostgreSQL", "MySQL", "MongoDB", "Redis", "SQL Server"]
 }
 
 dushmanta@linux-terminal:~$ systemctl status career.service
@@ -58,10 +58,12 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 
 #### Database Administration (DBA)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+![Microsoft SQL Server](https://img.shields.io/badge/SQL_Server-CC292B?style=flat-square&logo=microsoftsqlserver&logoColor=white)
 
 ---
 
