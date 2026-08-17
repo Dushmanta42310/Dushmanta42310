@@ -1,17 +1,27 @@
-# Dushmanta Das
-**Data Analytics | AI/ML | Cloud Engineer | DBA**
+<div align="center">
+  <!-- Waving Header Banner -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,10,30,50&height=220&section=header&text=Dushmanta%20Das&fontSize=42&fontColor=ffffff&animation=twinkling&subtext=Data%20Analytics%20%7C%20AI/ML%20%7C%20Cloud%20Engineer%20%7C%20DBA&subtextSize=18&subtextY=75" width="100%" alt="Header Banner"/>
 
----
+  <br/>
 
-### 📟 Linux Terminal Overview
+  <!-- Typing SVG Tagline -->
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=600&lines=Data+Analytics+%26+Business+Intelligence;AI+%2F+Machine+Learning+Architect;Cloud+Infrastructure+%26+DevOps+Engineer;Database+Administrator+(DBA)+%26+SQL+Expert" alt="Typing SVG" />
+  </a>
+</div>
 
-```bash
-dushmanta@linux-terminal:~$ whoami
+<br/>
+
+### About
+
+<pre style="background-color: #0d1117; color: #00ff66; border: 1px solid #00ff66; padding: 15px; border-radius: 6px; font-family: 'Courier New', Courier, monospace;">
+<b style="color: #00ff66;">dushmanta@linux-terminal:~$</b> whoami
 > Dushmanta Das | Data Analytics | AI/ML | Cloud Engineer | DBA
 
-dushmanta@linux-terminal:~$ cat skills.json
+<b style="color: #00ff66;">dushmanta@linux-terminal:~$</b> cat skills.json
 {
   "name": "Dushmanta Das",
+  "username": "Dushmanta42310",
   "roles": ["Data Analytics", "AI/ML Engineer", "Cloud Engineer", "DBA"],
   "data_analytics": ["Python", "Pandas", "NumPy", "PowerBI", "Tableau", "SQL"],
   "ai_ml": ["PyTorch", "TensorFlow", "Scikit-Learn", "OpenCV", "LLMs"],
@@ -19,44 +29,16 @@ dushmanta@linux-terminal:~$ cat skills.json
   "dba": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle DB", "SQL Server"]
 }
 
-dushmanta@linux-terminal:~$ systemctl status career.service
+<b style="color: #00ff66;">dushmanta@linux-terminal:~$</b> systemctl status career.service
 ● career.service - Active Learning & Innovation
      Loaded: loaded (/etc/systemd/system/career.service; enabled)
-     Active: active (running) since 2024
+     Active: <b style="color: #00ff66;">active (running)</b> since 2024
      Status: "Building data pipelines, training ML models & tuning databases"
-```
+</pre>
 
 ---
 
-### 🐍 GitHub Contribution Snake Game
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/output/github-contribution-grid-snake-dark.svg" alt="Contribution Snake Animation" width="100%" />
-  <p><i>Note: To enable the snake game animation, trigger the <b>Generate Snake Animation</b> workflow under your repository's <b>Actions</b> tab.</i></p>
-</div>
-
----
-
-### 📊 GitHub Statistics & Metrics
-
-<div align="center">
-  <!-- GitHub Streak Stats (Working Verified) -->
-  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=2EA043&fire=2EA043&currStreakLabel=2EA043" height="170" alt="GitHub Streak Stats" />
-  &nbsp;
-  <!-- General GitHub Stats -->
-  <img src="https://github-readme-stats.vercel.app/api?username=Dushmanta42310&show_icons=true&theme=dark&count_private=true&include_all_commits=true&hide_border=true&title_color=2ea043&icon_color=2ea043&text_color=c9d1d9&bg_color=0d1117" height="170" alt="GitHub Stats" />
-</div>
-
-<br/>
-
-<div align="center">
-  <!-- Top Languages Stats -->
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Dushmanta42310&layout=compact&theme=dark&hide_border=true&title_color=2ea043&text_color=c9d1d9&bg_color=0d1117" height="160" alt="Top Languages" />
-</div>
-
----
-
-### 🛠️ Tech Stack & Skills
+### Skills
 
 #### Data Analytics & BI
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
@@ -86,10 +68,26 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 
 ---
 
-### 🌐 Connect
+### Contribution
+
+<div align="center">
+  <!-- Snake Game Contribution Graph -->
+  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/github-contribution-grid-snake-dark.svg" alt="GitHub Contribution Snake Game" width="100%" />
+</div>
+
+<br/>
+
+<div align="center">
+  <!-- Live GitHub Contribution Streak -->
+  <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="170" alt="GitHub Streak Stats" />
+</div>
+
+---
+
+### Connect
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dushmanta-das-3455a2327/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:dushmantadas4231@gmail.com)
 [![X / Twitter](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/D36366Dushmanta)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/its___.shinchan)
-[![Portfolio](https://img.shields.io/badge/Portfolio-2EA043?style=flat-square&logo=aboutdotme&logoColor=white)](https://dushmanta42310.github.io/portfolio/#projects)
+[![Portfolio](https://img.shields.io/badge/Portfolio-00FF66?style=flat-square&logo=aboutdotme&logoColor=black)](https://dushmanta42310.github.io/portfolio/#projects)
