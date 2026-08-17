@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dushmanta's GitHub Contribution Space Shooter & Snake Game</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      color: #38bdf8;
+      margin-bottom: 8px;
+      font-size: 24px;
+      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+    p.subtitle {
+      color: #8b949e;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    #canvas-container {
+      position: relative;
+      border: 2px solid #30363d;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
+      background: #161b22;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+    .hud {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      color: #00ff66;
+      font-family: monospace;
+      font-size: 16px;
+      font-weight: bold;
+      pointer-events: none;
+    }
+    .controls-hint {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+    }
+    .btn-kbd {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #38bdf8;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 13px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 GitHub Contribution Space Shooter & Snake Game</h1>
+  <p class="subtitle">Destroy & Collect Dushmanta's Green GitHub Contribution Squares!</p>
+
+  <div id="canvas-container">
+    <div class="hud">
+      <div>SCORE: <span id="score">0</span></div>
+      <div>CONTRIBUTIONS DESTROYED: <span id="destroyed">0</span></div>
+    </div>
+    <canvas id="gameCanvas" width="850" height="420"></canvas>
+  </div>
+
+  <div class="controls-hint">
+    <div class="btn-kbd">⬅️ ➡️ Move Rocket / Snake</div>
+    <div class="btn-kbd">SPACE : Shoot Lasers</div>
+    <div class="btn-kbd">R : Restart Game</div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const destroyedEl = document.getElementById('destroyed');
+
+    let score = 0;
+    let destroyed = 0;
+    let gameOver = false;
+
+    // Player Rocket
+    const player = {
+      x: canvas.width / 2 - 15,
+      y: canvas.height - 40,
+      width: 30,
+      height: 30,
+      speed: 7,
+      dx: 0
+    };
+
+    // Bullets
+    const bullets = [];
+    const bulletSpeed = 8;
+
+    // GitHub Contribution Squares Grid
+    const blocks = [];
+    const colors = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353', '#00ff66'];
+    
+    function initBlocks() {
+      blocks.length = 0;
+      const cols = 28;
+      const rows = 7;
+      const size = 18;
+      const gap = 6;
+      const offsetX = (canvas.width - (cols * (size + gap))) / 2;
+      const offsetY = 60;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          // Weighted green contribution level
+          const rand = Math.random();
+          let colorIdx = 1;
+          if (rand > 0.8) colorIdx = 5;
+          else if (rand > 0.6) colorIdx = 4;
+          else if (rand > 0.4) colorIdx = 3;
+          else if (rand > 0.2) colorIdx = 2;
+
+          blocks.push({
+            x: offsetX + c * (size + gap),
+            y: offsetY + r * (size + gap),
+            width: size,
+            height: size,
+            color: colors[colorIdx],
+            hp: colorIdx,
+            active: true
+          });
+        }
+      }
+    }
+
+    initBlocks();
+
+    // Event Listeners
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a') player.dx = -player.speed;
+      if (e.key === 'ArrowRight' || e.key === 'd') player.dx = player.speed;
+      if (e.key === ' ' || e.key === 'Spacebar') {
+        bullets.push({ x: player.x + player.width / 2 - 2.5, y: player.y, width: 5, height: 12 });
+      }
+      if (e.key === 'r' || e.key === 'R') {
+        score = 0;
+        destroyed = 0;
+        scoreEl.innerText = score;
+        destroyedEl.innerText = destroyed;
+        gameOver = false;
+        initBlocks();
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'ArrowRight' || e.key === 'd') {
+        player.dx = 0;
+      }
+    });
+
+    function update() {
+      if (gameOver) return;
+
+      // Move player
+      player.x += player.dx;
+      if (player.x < 10) player.x = 10;
+      if (player.x + player.width > canvas.width - 10) player.x = canvas.width - 10 - player.width;
+
+      // Move bullets
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        bullets[i].y -= bulletSpeed;
+        if (bullets[i].y < 0) {
+          bullets.splice(i, 1);
+          continue;
+        }
+
+        // Check collision with blocks
+        for (let j = 0; j < blocks.length; j++) {
+          const b = blocks[j];
+          if (b.active &&
+              bullets[i] &&
+              bullets[i].x < b.x + b.width &&
+              bullets[i].x + bullets[i].width > b.x &&
+              bullets[i].y < b.y + b.height &&
+              bullets[i].y + bullets[i].height > b.y) {
+            
+            b.hp--;
+            if (b.hp <= 0) {
+              b.active = false;
+              destroyed++;
+              score += 50;
+            } else {
+              b.color = colors[b.hp];
+              score += 10;
+            }
+            scoreEl.innerText = score;
+            destroyedEl.innerText = destroyed;
+            bullets.splice(i, 1);
+            break;
+          }
+        }
+      }
+    }
+
+    function drawPlayer() {
+      // Draw Rocket
+      ctx.fillStyle = '#38bdf8';
+      ctx.beginPath();
+      ctx.moveTo(player.x + player.width / 2, player.y);
+      ctx.lineTo(player.x, player.y + player.height);
+      ctx.lineTo(player.x + player.width, player.y + player.height);
+      ctx.closePath();
+      ctx.fill();
+
+      // Rocket Thruster Flame
+      ctx.fillStyle = '#ffbd2e';
+      ctx.fillRect(player.x + player.width / 2 - 3, player.y + player.height, 6, 8);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Grid Background
+      ctx.strokeStyle = '#21262d';
+      ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Contribution Blocks
+      blocks.forEach(b => {
+        if (b.active) {
+          ctx.fillStyle = b.color;
+          ctx.beginPath();
+          ctx.roundRect(b.x, b.y, b.width, b.height, 3);
+          ctx.fill();
+        }
+      });
+
+      // Draw Bullets
+      ctx.fillStyle = '#00ff66';
+      bullets.forEach(b => {
+        ctx.fillRect(b.x, b.y, b.width, b.height);
+      });
+
+      // Draw Player
+      drawPlayer();
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  </script>
+</body>
+</html>

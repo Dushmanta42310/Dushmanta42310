@@ -26,12 +26,29 @@ dushmanta@linux-terminal:~$ cat core_competencies.json
   "data_analytics": ["Python", "Pandas", "NumPy", "PowerBI", "Tableau", "SQL"],
   "ai_ml": ["PyTorch", "TensorFlow", "Scikit-Learn", "OpenCV", "LLMs"],
   "cloud_engineering": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform"],
-  "dba": ["Oracle DB (Expert)", "PostgreSQL", "MySQL", "MongoDB", "Redis", "SQL Server"]
+  "dba": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Oracle DB", "SQL Server"]
 }
 
 dushmanta@linux-terminal:~$ systemctl status career.service
 ● career.service - Active (running) | Building scalable AI & data systems
 ```
+
+---
+
+### Interactive Contribution Space Shooter & Snake Game 🚀🎮
+
+<div align="center">
+  <p><b>Control your Rocket / Snake to shoot & eat Dushmanta's live green GitHub contribution squares!</b></p>
+  
+  <a href="https://dushmanta42310.github.io/Dushmanta42310/">
+    <img src="https://img.shields.io/badge/%F0%9F%9A%80%20CLICK%20HERE%20TO%20PLAY%20CONTRIBUTION%20SPACE%20SHOOTER-00FF66?style=for-the-badge&logoColor=black&color=00FF66" height="45" alt="Play Game Live" />
+  </a>
+
+  <br/><br/>
+
+  <!-- Contribution Snake Animation -->
+  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/output/github-contribution-grid-snake-dark.svg" width="100%" alt="GitHub Contribution Snake Game" />
+</div>
 
 ---
 
@@ -58,12 +75,10 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 
 #### Database Administration (DBA)
-![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
-![Microsoft SQL Server](https://img.shields.io/badge/SQL_Server-CC292B?style=flat-square&logo=microsoftsqlserver&logoColor=white)
 
 ---
 
@@ -72,15 +87,6 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 <div align="center">
   <!-- GitHub Streak Stats -->
   <img src="https://streak-stats.demolab.com/?user=Dushmanta42310&theme=dark&hide_border=true&background=0D1117&ring=00FF66&fire=00FF66&currStreakLabel=00FF66" height="170" alt="GitHub Streak Stats" />
-</div>
-
----
-
-### Contribution
-
-<div align="center">
-  <!-- Contribution Snake Animation -->
-  <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/output/github-contribution-grid-snake-dark.svg" width="100%" alt="GitHub Contribution Snake Game" />
 </div>
 
 ---
