@@ -12,6 +12,29 @@
 
 <br/>
 
+---
+
+### Live Dashboard
+
+<div align="center">
+
+  <a href="https://dushmanta42310.github.io/portfolio/">
+    <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/command-center.svg" width="100%" alt="Animated command center status dashboard" />
+  </a>
+
+  <a href="https://github.com/Dushmanta42310">
+    <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/contribution-heatmap.svg" width="100%" alt="Animated GitHub contribution activity heatmap" />
+  </a>
+
+  <a href="https://dushmanta42310.github.io/portfolio/">
+    <img src="https://raw.githubusercontent.com/Dushmanta42310/Dushmanta42310/main/assets/skill-bars.svg" width="100%" alt="Animated skill proficiency dashboard" />
+  </a>
+
+  <sub>Animated SVG cards · click any card to explore</sub>
+</div>
+
+---
+
 ### About
 
 ```bash
