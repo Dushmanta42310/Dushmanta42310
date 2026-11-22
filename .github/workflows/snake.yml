@@ -33,6 +33,38 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: generate contributions.json
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const query = `query($login: String!) {
+              user(login: $login) {
+                contributionsCollection {
+                  contributionCalendar {
+                    totalContributions
+                    weeks {
+                      contributionDays {
+                        date
+                        contributionCount
+                        contributionLevel
+                      }
+                    }
+                  }
+                }
+              }
+            }`;
+            const result = await github.graphql(query, { login: context.repo.owner });
+            const calendar = result.user.contributionsCollection.contributionCalendar;
+            const payload = {
+              username: context.repo.owner,
+              updatedAt: new Date().toISOString(),
+              totalContributions: calendar.totalContributions,
+              weeks: calendar.weeks
+            };
+            fs.mkdirSync('dist', { recursive: true });
+            fs.writeFileSync('dist/contributions.json', JSON.stringify(payload, null, 2));
+
       # Push the SVG files to the 'output' branch
       - name: push github-contribution-grid-snake.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0

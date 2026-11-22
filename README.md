@@ -1,6 +1,6 @@
 <div align="center">
   <!-- Waving Header Banner -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,10,30,50&height=220&section=header&text=Dushmanta%20Das&fontSize=42&fontColor=ffffff&animation=twinkling&subtext=Data%20Analytics%20%7C%20AI/ML%20%7C%20Cloud%20Engineer%20%7C%20DBA&subtextSize=18&subtextY=75" width="100%" alt="Header Banner"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,10,30,50&height=220&section=header&text=Dusshmanta%20Dev&fontSize=42&fontColor=ffffff&animation=twinkling&subtext=Data%20Analytics%20%7C%20AI/ML%20%7C%20Cloud%20Engineer%20%7C%20DBA&subtextSize=18&subtextY=75" width="100%" alt="Header Banner"/>
 
   <br/>
 
@@ -39,11 +39,17 @@
 
 ```bash
 dushmanta@linux-terminal:~$ whoami
-> Dushmanta Das | Data Analytics | AI/ML | Cloud Engineer | DBA
+> Dusshmanta Dev | Data Analytics | AI/ML | Cloud Engineer | DBA
+
+dushmanta@linux-terminal:~$ git profile --stats
+> 10 public repos | 3 followers | 3 following | 1 star earned
+
+dushmanta@linux-terminal:~$ git status --profile
+> Khurdha, Odisha, India | GitHub since 2024-10-29
 
 dushmanta@linux-terminal:~$ cat core_competencies.json
 {
-  "name": "Dushmanta Das",
+  "name": "Dusshmanta Dev",
   "username": "Dushmanta42310",
   "roles": ["Data Analytics", "AI/ML Engineer", "Cloud Engineer", "DBA"],
   "data_analytics": ["Python", "Pandas", "NumPy", "PowerBI", "Tableau", "SQL"],
@@ -58,13 +64,17 @@ dushmanta@linux-terminal:~$ systemctl status career.service
 
 ---
 
-### Interactive Contribution Space Shooter & Snake Game 🚀🎮
+### Interactive Contribution Graph & Space Shooter 🚀📊🎮
 
 <div align="center">
-  <p><b>Control your Rocket / Snake to shoot & eat Dushmanta's live green GitHub contribution squares!</b></p>
+  <p><b>Explore Dushmanta's contribution heatmap, filter activity, and play the space shooter!</b></p>
   
   <a href="https://dushmanta42310.github.io/Dushmanta42310/">
-    <img src="https://img.shields.io/badge/%F0%9F%9A%80%20CLICK%20HERE%20TO%20PLAY%20CONTRIBUTION%20SPACE%20SHOOTER-00FF66?style=for-the-badge&logoColor=black&color=00FF66" height="45" alt="Play Game Live" />
+    <img src="https://img.shields.io/badge/%F0%9F%93%8A%20OPEN%20INTERACTIVE%20CONTRIBUTION%20GRAPH-38BDF8?style=for-the-badge&logoColor=black&color=38BDF8" height="45" alt="Open Interactive Contribution Graph" />
+  </a>
+
+  <a href="https://dushmanta42310.github.io/Dushmanta42310/">
+    <img src="https://img.shields.io/badge/%F0%9F%9A%80%20PLAY%20CONTRIBUTION%20SPACE%20SHOOTER-00FF66?style=for-the-badge&logoColor=black&color=00FF66" height="45" alt="Play Game Live" />
   </a>
 
   <br/><br/>

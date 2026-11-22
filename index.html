@@ -3,42 +3,408 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dushmanta's GitHub Contribution Space Shooter & Snake Game</title>
+  <title>Dushmanta's Interactive Contribution Explorer</title>
   <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --border: #30363d;
+      --muted: #8b949e;
+      --text: #c9d1d9;
+      --blue: #38bdf8;
+      --green: #00ff66;
+      --c0: #161b22;
+      --c1: #0e4429;
+      --c2: #006d32;
+      --c3: #26a641;
+      --c4: #39d353;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: #0d1117;
-      color: #c9d1d9;
+      background: radial-gradient(circle at 50% -10%, rgba(0, 255, 102, 0.08), transparent 45%), var(--bg);
+      color: var(--text);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      padding: 28px 16px 48px;
+    }
+
+    .app {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      color: var(--blue);
+      font-size: clamp(22px, 4vw, 32px);
+      margin-bottom: 8px;
+      text-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .tab:hover {
+      color: var(--text);
+      border-color: var(--blue);
+    }
+
+    .tab.active {
+      color: #08110d;
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 0 18px rgba(0, 255, 102, 0.25);
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 12px 38px rgba(0, 0, 0, 0.35);
+    }
+
+    .panel + .panel {
+      margin-top: 16px;
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .panel-title {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: var(--green);
+    }
+
+    .source {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .control {
+      background: #21262d;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 7px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      transition: 0.18s ease;
+    }
+
+    .control:hover,
+    .control.active {
+      color: var(--green);
+      border-color: rgba(0, 255, 102, 0.55);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .stat b {
+      display: block;
+      color: var(--blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .heatmap-scroll {
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .month-row,
+    .days-row {
+      display: grid;
+      grid-template-columns: 30px repeat(var(--weeks, 53), 13px);
+      gap: 4px;
+    }
+
+    .month-row {
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+    }
+
+    .days-row {
+      grid-template-rows: repeat(7, 13px);
+      grid-auto-flow: column;
+      align-items: center;
+    }
+
+    .day-label {
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 9px;
+      height: 13px;
+      line-height: 13px;
+    }
+
+    .cell {
+      background: var(--c0);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 3px;
+      width: 13px;
+      height: 13px;
+      padding: 0;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+    }
+
+    .cell[data-level="1"] { background: var(--c1); }
+    .cell[data-level="2"] { background: var(--c2); }
+    .cell[data-level="3"] { background: var(--c3); }
+    .cell[data-level="4"] { background: var(--c4); }
+
+    .cell:hover,
+    .cell:focus-visible {
+      outline: none;
+      transform: scale(1.35);
+      box-shadow: 0 0 0 2px var(--blue);
+      z-index: 2;
+    }
+
+    .cell.selected {
+      box-shadow: 0 0 0 2px var(--green), 0 0 12px rgba(0, 255, 102, 0.6);
+    }
+
+    .cell.future {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .cell.filtered {
+      opacity: 0.12;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .legend i {
+      width: 11px;
+      height: 11px;
+      border-radius: 2px;
+      display: inline-block;
+      background: var(--c0);
+    }
+
+    .legend i[data-level="1"] { background: var(--c1); }
+    .legend i[data-level="2"] { background: var(--c2); }
+    .legend i[data-level="3"] { background: var(--c3); }
+    .legend i[data-level="4"] { background: var(--c4); }
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .details h3 {
+      color: var(--text);
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .details p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .details strong {
+      color: var(--green);
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      height: 140px;
+      padding-top: 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bar-item {
+      flex: 1;
+      min-width: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .bar {
+      width: 100%;
+      max-width: 48px;
+      min-height: 3px;
+      background: linear-gradient(180deg, var(--green), var(--c2));
+      border-radius: 5px 5px 0 0;
+      position: relative;
+      cursor: pointer;
+      transition: filter 0.15s ease;
+    }
+
+    .bar:hover {
+      filter: brightness(1.4);
+    }
+
+    .bar span {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--green);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+    }
+
+    .bar-item small {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 6px;
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 30;
+      background: #010409;
+      border: 1px solid var(--green);
+      border-radius: 7px;
+      padding: 7px 10px;
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .tooltip.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tooltip b {
+      color: var(--green);
+    }
+
+    .game-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
+      gap: 14px;
     }
-    h1 {
-      color: #38bdf8;
-      margin-bottom: 8px;
-      font-size: 24px;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-    }
-    p.subtitle {
-      color: #8b949e;
-      margin-bottom: 16px;
-      font-size: 14px;
-    }
+
     #canvas-container {
       position: relative;
-      border: 2px solid #30363d;
+      border: 2px solid var(--border);
       border-radius: 12px;
       box-shadow: 0 0 30px rgba(0, 255, 102, 0.15);
-      background: #161b22;
+      background: var(--panel);
       overflow: hidden;
+      max-width: 100%;
     }
+
     canvas {
       display: block;
+      max-width: 100%;
+      touch-action: none;
     }
+
     .hud {
       position: absolute;
       top: 12px;
@@ -46,49 +412,444 @@
       right: 16px;
       display: flex;
       justify-content: space-between;
-      color: #00ff66;
-      font-family: monospace;
-      font-size: 16px;
+      color: var(--green);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
       font-weight: bold;
       pointer-events: none;
     }
+
     .controls-hint {
-      margin-top: 16px;
       display: flex;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
+
     .btn-kbd {
       background: #21262d;
-      border: 1px solid #30363d;
-      color: #38bdf8;
+      border: 1px solid var(--border);
+      color: var(--blue);
       padding: 6px 12px;
       border-radius: 6px;
-      font-family: monospace;
-      font-size: 13px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .panel { padding: 14px; }
+      .hud { font-size: 11px; }
     }
   </style>
 </head>
 <body>
+  <main class="app">
+    <header class="header">
+      <h1>Interactive Contribution Explorer</h1>
+      <p class="subtitle">Hover, click, filter, and compare Dushmanta's GitHub activity.</p>
+    </header>
 
-  <h1>🚀 GitHub Contribution Space Shooter & Snake Game</h1>
-  <p class="subtitle">Destroy & Collect Dushmanta's Green GitHub Contribution Squares!</p>
+    <nav class="tabs" aria-label="Views">
+      <button class="tab active" data-view="graphView">Contribution Graph</button>
+      <button class="tab" data-view="gameView">Space Shooter</button>
+    </nav>
 
-  <div id="canvas-container">
-    <div class="hud">
-      <div>SCORE: <span id="score">0</span></div>
-      <div>CONTRIBUTIONS DESTROYED: <span id="destroyed">0</span></div>
-    </div>
-    <canvas id="gameCanvas" width="850" height="420"></canvas>
-  </div>
+    <section id="graphView" class="view active">
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">CONTRIBUTION HEATMAP</div>
+          <div id="dataSource" class="source">LOADING DATA...</div>
+        </div>
 
-  <div class="controls-hint">
-    <div class="btn-kbd">⬅️ ➡️ Move Rocket / Snake</div>
-    <div class="btn-kbd">SPACE : Shoot Lasers</div>
-    <div class="btn-kbd">R : Restart Game</div>
-  </div>
+        <div class="controls" aria-label="Graph controls">
+          <button class="control active" data-range="90">90 days</button>
+          <button class="control" data-range="180">6 months</button>
+          <button class="control" data-range="371">1 year</button>
+          <button class="control" data-filter="all">All</button>
+          <button class="control" data-filter="active">Active only</button>
+          <button class="control" data-filter="peak">Peak days</button>
+          <button id="autoplay" class="control">Autoplay</button>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat"><b id="statTotal">0</b><span>Total</span></div>
+          <div class="stat"><b id="statActive">0</b><span>Active days</span></div>
+          <div class="stat"><b id="statStreak">0</b><span>Best streak</span></div>
+          <div class="stat"><b id="statBest">0</b><span>Best day</span></div>
+          <div class="stat"><b id="statAverage">0</b><span>Daily average</span></div>
+        </div>
+
+        <div class="heatmap-scroll">
+          <div id="monthRow" class="month-row"></div>
+          <div id="daysRow" class="days-row"></div>
+        </div>
+
+        <div class="legend">
+          <span>Less</span>
+          <i data-level="0"></i>
+          <i data-level="1"></i>
+          <i data-level="2"></i>
+          <i data-level="3"></i>
+          <i data-level="4"></i>
+          <span>More</span>
+        </div>
+      </div>
+
+      <div class="panel details">
+        <div>
+          <h3 id="detailTitle">Select a square</h3>
+          <p id="detailText">Click any day to inspect its contribution count and weekly activity.</p>
+        </div>
+        <button id="clearSelection" class="control">Clear selection</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">MONTHLY MOMENTUM</div>
+          <div class="source">HOVER BARS FOR TOTALS</div>
+        </div>
+        <div id="barChart" class="bar-chart"></div>
+      </div>
+    </section>
+
+    <section id="gameView" class="view">
+      <div class="game-wrap">
+        <div id="canvas-container">
+          <div class="hud">
+            <div>SCORE: <span id="score">0</span></div>
+            <div>CONTRIBUTIONS DESTROYED: <span id="destroyed">0</span></div>
+          </div>
+          <canvas id="gameCanvas" width="850" height="420"></canvas>
+        </div>
+        <div class="controls-hint">
+          <div class="btn-kbd">MOUSE / TOUCH : Move & Fire</div>
+          <div class="btn-kbd">ARROWS : Move</div>
+          <div class="btn-kbd">SPACE : Shoot</div>
+          <div class="btn-kbd">R : Restart</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip" role="tooltip"></div>
 
   <script>
+    const username = 'Dushmanta42310';
+    const liveUrl = `https://raw.githubusercontent.com/${username}/${username}/output/contributions.json`;
+    const dayMs = 86400000;
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const colorNames = ['No contributions', 'Light', 'Moderate', 'Strong', 'Peak'];
+
+    let calendar = [];
+    let rangeDays = 90;
+    let activeFilter = 'all';
+    let selectedDate = null;
+    let autoplayTimer = null;
+    let autoplayIndex = 0;
+    let dataSource = 'DEMO DATA';
+
+    const monthRow = document.getElementById('monthRow');
+    const daysRow = document.getElementById('daysRow');
+    const tooltip = document.getElementById('tooltip');
+    const barChart = document.getElementById('barChart');
+
+    function startOfDay(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function formatDate(date) {
+      return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }
+
+    function dateKey(date) {
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+
+    function levelFor(count) {
+      if (count === 0) return 0;
+      if (count <= 2) return 1;
+      if (count <= 5) return 2;
+      if (count <= 9) return 3;
+      return 4;
+    }
+
+    function seededRandom(seed) {
+      let value = seed >>> 0;
+      return () => {
+        value = (value * 1664525 + 1013904223) >>> 0;
+        return value / 4294967296;
+      };
+    }
+
+    function buildCalendar() {
+      const today = startOfDay(new Date());
+      const end = new Date(today);
+      end.setDate(end.getDate() + (6 - end.getDay()));
+      const start = new Date(end);
+      start.setDate(start.getDate() - 52 * 7);
+
+      const result = [];
+      for (let i = 0; i < 371; i++) {
+        const date = new Date(start);
+        date.setDate(start.getDate() + i);
+        result.push({ date, count: 0, future: date > today });
+      }
+      return result;
+    }
+
+    function applyDemoData(days) {
+      const random = seededRandom(20241029);
+      const eligible = days.map((day, index) => ({ day, index })).filter(item => !item.day.future);
+      for (let i = 0; i < 69; i++) {
+        const pick = eligible[Math.floor(random() * eligible.length)];
+        pick.day.count += 1;
+      }
+    }
+
+    function applyLiveData(days, weeks) {
+      const counts = new Map();
+      weeks.forEach(week => {
+        week.contributionDays.forEach(day => {
+          counts.set(day.date, day.contributionCount);
+        });
+      });
+      days.forEach(day => {
+        day.count = counts.get(dateKey(day.date)) || 0;
+      });
+    }
+
+    function visibleDays() {
+      const weekCount = Math.ceil(rangeDays / 7);
+      return calendar.slice(-weekCount * 7);
+    }
+
+    function monthLabels(days) {
+      const labels = [];
+      for (let i = 0; i < days.length; i += 7) {
+        const week = days.slice(i, i + 7);
+        const labelWeek = week.find(day => day.date.getDate() <= 7 && !day.future);
+        labels.push(labelWeek ? monthNames[labelWeek.date.getMonth()] : '');
+      }
+      return labels;
+    }
+
+    function renderHeatmap() {
+      const days = visibleDays();
+      const labels = monthLabels(days);
+      const selected = selectedDate;
+
+      monthRow.style.setProperty('--weeks', labels.length);
+      daysRow.style.setProperty('--weeks', labels.length);
+      monthRow.innerHTML = '<span></span>' + labels.map(label => `<span>${label}</span>`).join('');
+
+      let html = '';
+      for (let row = 0; row < 7; row++) {
+        html += `<span class="day-label">${row % 2 === 1 ? ['Mon', 'Wed', 'Fri'][(row - 1) / 2] : ''}</span>`;
+      }
+
+      days.forEach(day => {
+        const key = dateKey(day.date);
+        const level = levelFor(day.count);
+        const filtered = (activeFilter === 'active' && day.count === 0) || (activeFilter === 'peak' && level < 3);
+        html += `<button class="cell${day.future ? ' future' : ''}${filtered ? ' filtered' : ''}${selected === key ? ' selected' : ''}" data-date="${key}" data-count="${day.count}" data-level="${level}" aria-label="${formatDate(day.date)}: ${day.count} contributions"></button>`;
+      });
+
+      daysRow.innerHTML = html;
+      updateStats(days);
+      renderBars(days);
+      if (selected) updateDetails();
+    }
+
+    function longestStreak(days) {
+      let best = 0;
+      let current = 0;
+      days.forEach(day => {
+        if (day.count > 0) {
+          current += 1;
+          best = Math.max(best, current);
+        } else {
+          current = 0;
+        }
+      });
+      return best;
+    }
+
+    function updateStats(days) {
+      const realDays = days.filter(day => !day.future);
+      const total = realDays.reduce((sum, day) => sum + day.count, 0);
+      const active = realDays.filter(day => day.count > 0).length;
+      const best = realDays.reduce((max, day) => Math.max(max, day.count), 0);
+      document.getElementById('statTotal').textContent = total;
+      document.getElementById('statActive').textContent = active;
+      document.getElementById('statStreak').textContent = longestStreak(realDays);
+      document.getElementById('statBest').textContent = best;
+      document.getElementById('statAverage').textContent = (total / Math.max(realDays.length, 1)).toFixed(1);
+    }
+
+    function renderBars(days) {
+      const months = new Map();
+      days.filter(day => !day.future).forEach(day => {
+        const key = `${day.date.getFullYear()}-${day.date.getMonth()}`;
+        if (!months.has(key)) {
+          months.set(key, { label: monthNames[day.date.getMonth()], total: 0 });
+        }
+        months.get(key).total += day.count;
+      });
+
+      const values = [...months.values()];
+      const max = Math.max(...values.map(month => month.total), 1);
+      barChart.innerHTML = values.map(month => `
+        <div class="bar-item">
+          <div class="bar" style="height:${Math.max((month.total / max) * 100, 3)}%" data-total="${month.total}" data-label="${month.label}">
+            <span>${month.total}</span>
+          </div>
+          <small>${month.label}</small>
+        </div>
+      `).join('');
+    }
+
+    function updateDetails() {
+      if (!selectedDate) {
+        document.getElementById('detailTitle').textContent = 'Select a square';
+        document.getElementById('detailText').textContent = 'Click any day to inspect its contribution count and weekly activity.';
+        return;
+      }
+
+      const day = calendar.find(item => dateKey(item.date) === selectedDate);
+      if (!day) return;
+
+      const index = calendar.indexOf(day);
+      const weekStart = Math.max(0, index - (day.date.getDay()));
+      const week = calendar.slice(weekStart, weekStart + 7);
+      const weekTotal = week.reduce((sum, item) => sum + item.count, 0);
+      document.getElementById('detailTitle').textContent = formatDate(day.date);
+      document.getElementById('detailText').innerHTML = `<strong>${day.count} contributions</strong> · ${colorNames[levelFor(day.count)]} · ${weekTotal} in this week`;
+    }
+
+    function selectDay(key) {
+      selectedDate = key;
+      renderHeatmap();
+    }
+
+    function showTooltip(text, event, element) {
+      tooltip.innerHTML = text;
+      tooltip.classList.add('show');
+      const rect = element.getBoundingClientRect();
+      const x = event && event.clientX ? event.clientX + 12 : rect.left;
+      const y = event && event.clientY ? event.clientY - 42 : rect.top - 42;
+      tooltip.style.left = `${Math.min(x, window.innerWidth - tooltip.offsetWidth - 12)}px`;
+      tooltip.style.top = `${Math.max(y, 8)}px`;
+    }
+
+    function hideTooltip() {
+      tooltip.classList.remove('show');
+    }
+
+    function runAutoplay() {
+      const active = visibleDays().filter(day => !day.future && day.count > 0);
+      if (!active.length) return;
+      autoplayIndex = (autoplayIndex + 1) % active.length;
+      selectDay(dateKey(active[autoplayIndex].date));
+    }
+
+    function toggleAutoplay() {
+      const button = document.getElementById('autoplay');
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+        button.classList.remove('active');
+        button.textContent = 'Autoplay';
+      } else {
+        autoplayTimer = setInterval(runAutoplay, 900);
+        runAutoplay();
+        button.classList.add('active');
+        button.textContent = 'Pause';
+      }
+    }
+
+    daysRow.addEventListener('click', event => {
+      const cell = event.target.closest('.cell');
+      if (cell && !cell.classList.contains('future')) selectDay(cell.dataset.date);
+    });
+
+    daysRow.addEventListener('mousemove', event => {
+      const cell = event.target.closest('.cell');
+      if (!cell || cell.classList.contains('future')) return;
+      showTooltip(`<b>${cell.dataset.count}</b> contributions · ${cell.dataset.date}`, event, cell);
+    });
+
+    daysRow.addEventListener('mouseleave', hideTooltip);
+
+    daysRow.addEventListener('focusin', event => {
+      const cell = event.target.closest('.cell');
+      if (!cell || cell.classList.contains('future')) return;
+      showTooltip(`<b>${cell.dataset.count}</b> contributions · ${cell.dataset.date}`, null, cell);
+    });
+
+    daysRow.addEventListener('focusout', hideTooltip);
+
+    barChart.addEventListener('mousemove', event => {
+      const bar = event.target.closest('.bar');
+      if (!bar) return;
+      showTooltip(`<b>${bar.dataset.total}</b> contributions in ${bar.dataset.label}`, event, bar);
+    });
+
+    barChart.addEventListener('mouseleave', hideTooltip);
+
+    document.querySelectorAll('.control[data-range]').forEach(button => {
+      button.addEventListener('click', () => {
+        rangeDays = Number(button.dataset.range);
+        document.querySelectorAll('.control[data-range]').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        renderHeatmap();
+      });
+    });
+
+    document.querySelectorAll('.control[data-filter]').forEach(button => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll('.control[data-filter]').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        renderHeatmap();
+      });
+    });
+
+    document.getElementById('autoplay').addEventListener('click', toggleAutoplay);
+
+    document.getElementById('clearSelection').addEventListener('click', () => {
+      selectedDate = null;
+      renderHeatmap();
+    });
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.view).classList.add('active');
+      });
+    });
+
+    async function loadData() {
+      calendar = buildCalendar();
+      try {
+        const response = await fetch(`${liveUrl}?t=${Date.now()}`, { cache: 'no-store' });
+        if (!response.ok) throw new Error('Live data unavailable');
+        const data = await response.json();
+        if (!Array.isArray(data.weeks) || !data.weeks.length) throw new Error('Invalid live data');
+        applyLiveData(calendar, data.weeks);
+        dataSource = data.updatedAt ? `LIVE · ${new Date(data.updatedAt).toLocaleDateString()}` : 'LIVE DATA';
+      } catch (error) {
+        applyDemoData(calendar);
+        dataSource = 'DEMO DATA';
+      }
+      document.getElementById('dataSource').textContent = dataSource;
+      renderHeatmap();
+    }
+
+    loadData();
+
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     const scoreEl = document.getElementById('score');
@@ -98,7 +859,6 @@
     let destroyed = 0;
     let gameOver = false;
 
-    // Player Rocket
     const player = {
       x: canvas.width / 2 - 15,
       y: canvas.height - 40,
@@ -108,14 +868,11 @@
       dx: 0
     };
 
-    // Bullets
     const bullets = [];
     const bulletSpeed = 8;
-
-    // GitHub Contribution Squares Grid
     const blocks = [];
     const colors = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353', '#00ff66'];
-    
+
     function initBlocks() {
       blocks.length = 0;
       const cols = 28;
@@ -127,7 +884,6 @@
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          // Weighted green contribution level
           const rand = Math.random();
           let colorIdx = 1;
           if (rand > 0.8) colorIdx = 5;
@@ -150,38 +906,54 @@
 
     initBlocks();
 
-    // Event Listeners
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft' || e.key === 'a') player.dx = -player.speed;
-      if (e.key === 'ArrowRight' || e.key === 'd') player.dx = player.speed;
-      if (e.key === ' ' || e.key === 'Spacebar') {
-        bullets.push({ x: player.x + player.width / 2 - 2.5, y: player.y, width: 5, height: 12 });
+    function shoot() {
+      bullets.push({ x: player.x + player.width / 2 - 2.5, y: player.y, width: 5, height: 12 });
+    }
+
+    function restart() {
+      score = 0;
+      destroyed = 0;
+      scoreEl.innerText = score;
+      destroyedEl.innerText = destroyed;
+      gameOver = false;
+      initBlocks();
+    }
+
+    window.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft' || event.key === 'a') player.dx = -player.speed;
+      if (event.key === 'ArrowRight' || event.key === 'd') player.dx = player.speed;
+      if (event.key === ' ' || event.key === 'Spacebar') {
+        event.preventDefault();
+        shoot();
       }
-      if (e.key === 'r' || e.key === 'R') {
-        score = 0;
-        destroyed = 0;
-        scoreEl.innerText = score;
-        destroyedEl.innerText = destroyed;
-        gameOver = false;
-        initBlocks();
-      }
+      if (event.key === 'r' || event.key === 'R') restart();
     });
 
-    window.addEventListener('keyup', (e) => {
-      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'ArrowRight' || e.key === 'd') {
+    window.addEventListener('keyup', event => {
+      if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'ArrowRight' || event.key === 'd') {
         player.dx = 0;
       }
     });
 
-    function update() {
+    canvas.addEventListener('pointermove', event => {
+      const rect = canvas.getBoundingClientRect();
+      const x = (event.clientX - rect.left) * (canvas.width / rect.width);
+      player.x = Math.max(10, Math.min(x - player.width / 2, canvas.width - 10 - player.width));
+      shoot();
+    });
+
+    canvas.addEventListener('pointerdown', event => {
+      event.preventDefault();
+      shoot();
+    });
+
+    function updateGame() {
       if (gameOver) return;
 
-      // Move player
       player.x += player.dx;
       if (player.x < 10) player.x = 10;
       if (player.x + player.width > canvas.width - 10) player.x = canvas.width - 10 - player.width;
 
-      // Move bullets
       for (let i = bullets.length - 1; i >= 0; i--) {
         bullets[i].y -= bulletSpeed;
         if (bullets[i].y < 0) {
@@ -189,23 +961,22 @@
           continue;
         }
 
-        // Check collision with blocks
         for (let j = 0; j < blocks.length; j++) {
-          const b = blocks[j];
-          if (b.active &&
+          const block = blocks[j];
+          if (block.active &&
               bullets[i] &&
-              bullets[i].x < b.x + b.width &&
-              bullets[i].x + bullets[i].width > b.x &&
-              bullets[i].y < b.y + b.height &&
-              bullets[i].y + bullets[i].height > b.y) {
-            
-            b.hp--;
-            if (b.hp <= 0) {
-              b.active = false;
-              destroyed++;
+              bullets[i].x < block.x + block.width &&
+              bullets[i].x + bullets[i].width > block.x &&
+              bullets[i].y < block.y + block.height &&
+              bullets[i].y + bullets[i].height > block.y) {
+
+            block.hp -= 1;
+            if (block.hp <= 0) {
+              block.active = false;
+              destroyed += 1;
               score += 50;
             } else {
-              b.color = colors[b.hp];
+              block.color = colors[block.hp];
               score += 10;
             }
             scoreEl.innerText = score;
@@ -218,7 +989,6 @@
     }
 
     function drawPlayer() {
-      // Draw Rocket
       ctx.fillStyle = '#38bdf8';
       ctx.beginPath();
       ctx.moveTo(player.x + player.width / 2, player.y);
@@ -227,45 +997,39 @@
       ctx.closePath();
       ctx.fill();
 
-      // Rocket Thruster Flame
       ctx.fillStyle = '#ffbd2e';
       ctx.fillRect(player.x + player.width / 2 - 3, player.y + player.height, 6, 8);
     }
 
-    function draw() {
+    function drawGame() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw Grid Background
       ctx.strokeStyle = '#21262d';
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-      // Draw Contribution Blocks
-      blocks.forEach(b => {
-        if (b.active) {
-          ctx.fillStyle = b.color;
+      blocks.forEach(block => {
+        if (block.active) {
+          ctx.fillStyle = block.color;
           ctx.beginPath();
-          ctx.roundRect(b.x, b.y, b.width, b.height, 3);
+          ctx.roundRect(block.x, block.y, block.width, block.height, 3);
           ctx.fill();
         }
       });
 
-      // Draw Bullets
       ctx.fillStyle = '#00ff66';
-      bullets.forEach(b => {
-        ctx.fillRect(b.x, b.y, b.width, b.height);
+      bullets.forEach(bullet => {
+        ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
       });
 
-      // Draw Player
       drawPlayer();
     }
 
-    function loop() {
-      update();
-      draw();
-      requestAnimationFrame(loop);
+    function gameLoop() {
+      updateGame();
+      drawGame();
+      requestAnimationFrame(gameLoop);
     }
 
-    loop();
+    gameLoop();
   </script>
 </body>
 </html>
